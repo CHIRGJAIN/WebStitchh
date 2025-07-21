@@ -10,6 +10,8 @@ export interface JobPosition {
   benefits: string[];
   responsibilities: string[];
   featured: boolean;
+  salaryRange?: string;
+  skills?: string[];
 }
 
 export const jobPositions: JobPosition[] = [
@@ -46,7 +48,9 @@ export const jobPositions: JobPosition[] = [
       'Latest MacBook Pro and development tools',
       'Annual team retreats and company events'
     ],
-    featured: true
+    featured: true,
+    salaryRange: '₹8-15 LPA',
+    skills: ['React', 'Node.js', 'TypeScript', 'MongoDB', 'AWS', 'Git']
   },
   {
     id: 'ui-ux-designer',
@@ -81,7 +85,9 @@ export const jobPositions: JobPosition[] = [
       'Flexible working hours and remote work options',
       'Mentorship from senior designers and creative directors'
     ],
-    featured: true
+    featured: true,
+    salaryRange: '₹6-12 LPA',
+    skills: ['Figma', 'Adobe XD', 'Sketch', 'Prototyping', 'User Research', 'Design Systems']
   },
   {
     id: 'devops-engineer',
@@ -116,7 +122,9 @@ export const jobPositions: JobPosition[] = [
       'Performance bonuses and stock options',
       'Professional development opportunities'
     ],
-    featured: false
+    featured: false,
+    salaryRange: '₹10-18 LPA',
+    skills: ['AWS', 'Docker', 'Kubernetes', 'Terraform', 'Jenkins', 'Python']
   },
   {
     id: 'digital-marketing-specialist',
@@ -151,7 +159,9 @@ export const jobPositions: JobPosition[] = [
       'Flexible working hours',
       'Career growth opportunities'
     ],
-    featured: false
+    featured: false,
+    salaryRange: '₹5-10 LPA',
+    skills: ['SEO', 'Google Analytics', 'Content Marketing', 'Social Media', 'PPC', 'Email Marketing']
   }
 ];
 
