@@ -14,7 +14,8 @@ import {
   Star,
   Award,
   Coffee,
-  Zap
+  Zap,
+  Lightbulb
 } from 'lucide-react';
 import { jobPositions, companyBenefits, companyValues } from '../data/careers';
 import { MetaTags } from '../components/SEO/MetaTags';
@@ -28,7 +29,7 @@ const iconMap: { [key: string]: React.ComponentType<any> } = {
   BookOpen,
   Laptop,
   Users,
-  Lightbulb: require('lucide-react').Lightbulb,
+  Lightbulb,
   Award
 };
 

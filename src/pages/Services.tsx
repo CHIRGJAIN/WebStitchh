@@ -1,19 +1,19 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Check, Star, Users, Award, TrendingUp } from 'lucide-react';
+import { ArrowRight, Check, Star, Users, Award, TrendingUp, Code, Palette, ShoppingCart, Smartphone, Cloud, TrendingUp as TrendingUpIcon } from 'lucide-react';
 import { services } from '../data/services';
 import { testimonials } from '../data/testimonials';
 import { MetaTags } from '../components/SEO/MetaTags';
 import { LazyImage } from '../components/Performance/LazyImage';
 
 const iconMap: { [key: string]: React.ComponentType<any> } = {
-  Code: require('lucide-react').Code,
-  Palette: require('lucide-react').Palette,
-  ShoppingCart: require('lucide-react').ShoppingCart,
-  Smartphone: require('lucide-react').Smartphone,
-  Cloud: require('lucide-react').Cloud,
-  TrendingUp: require('lucide-react').TrendingUp,
+  Code,
+  Palette,
+  ShoppingCart,
+  Smartphone,
+  Cloud,
+  TrendingUp: TrendingUpIcon,
 };
 
 const stats = [
