@@ -12,6 +12,7 @@ import { Blog } from './pages/Blog';
 import { Careers } from './pages/Careers';
 import { Portfolio } from './pages/Portfolio';
 import { Contact } from './pages/Contact';
+import { BlogPost } from './pages/BlogPost';
 import { OrganizationSchema, LocalBusinessSchema } from './components/SEO/StructuredData';
 
 function App() {
@@ -28,6 +29,7 @@ function App() {
               <Route path="/about" element={<About />} />
               <Route path="/services" element={<Services />} />
               <Route path="/blog" element={<Blog />} />
+              <Route path="/blog/:slug" element={<BlogPost />} />
               <Route path="/careers" element={<Careers />} />
               <Route path="/portfolio" element={<Portfolio />} />
               <Route path="/contact" element={<Contact />} />

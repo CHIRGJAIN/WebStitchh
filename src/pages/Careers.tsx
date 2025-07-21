@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import { 
   MapPin, 
   Clock, 
@@ -18,6 +18,7 @@ import {
   Lightbulb
 } from 'lucide-react';
 import { jobPositions, companyBenefits, companyValues } from '../data/careers';
+import { JobApplicationForm } from '../components/Forms/JobApplicationForm';
 import { MetaTags } from '../components/SEO/MetaTags';
 import { JobPostingSchema } from '../components/SEO/StructuredData';
 import { LazyImage } from '../components/Performance/LazyImage';
@@ -70,6 +71,21 @@ const stats = [
 export const Careers: React.FC = () => {
   const [selectedJob, setSelectedJob] = useState<string | null>(null);
   const [selectedDepartment, setSelectedDepartment] = useState('All');
+  const [showApplicationForm, setShowApplicationForm] = useState(false);
+  const [applicationJobTitle, setApplicationJobTitle] = useState('');
+  const [searchParams] = useSearchParams();
+
+  // Check if there's a job parameter in URL
+  React.useEffect(() => {
+    const jobId = searchParams.get('job');
+    if (jobId) {
+      const job = jobPositions.find(j => j.id === jobId);
+      if (job) {
+        setApplicationJobTitle(job.title);
+        setShowApplicationForm(true);
+      }
+    }
+  }, [searchParams]);
 
   const departments = ['All', ...Array.from(new Set(jobPositions.map(job => job.department)))];
   const filteredJobs = selectedDepartment === 'All' 
@@ -339,12 +355,15 @@ export const Careers: React.FC = () => {
                       >
                         View Details
                       </button>
-                      <Link
-                        to={`/contact?job=${job.id}`}
+                      <button
+                        onClick={() => {
+                          setApplicationJobTitle(job.title);
+                          setShowApplicationForm(true);
+                        }}
                         className="px-4 py-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg hover:shadow-lg transition-all"
                       >
                         Apply Now
-                      </Link>
+                      </button>
                     </div>
                   </div>
 
@@ -439,6 +458,21 @@ export const Careers: React.FC = () => {
           </motion.div>
         </div>
       </section>
+
+      {/* Application Form Modal */}
+      {showApplicationForm && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm">
+          <div className="max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+            <JobApplicationForm
+              jobTitle={applicationJobTitle}
+              onClose={() => {
+                setShowApplicationForm(false);
+                setApplicationJobTitle('');
+              }}
+            />
+          </div>
+        </div>
+      )}
     </div>
   );
 };
