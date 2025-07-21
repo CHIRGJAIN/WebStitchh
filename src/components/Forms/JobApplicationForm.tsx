@@ -19,6 +19,7 @@ interface FormErrors {
   position?: string;
   resume?: string;
   coverLetter?: string;
+  general?: string;
 }
 
 interface JobApplicationFormProps {
@@ -49,20 +50,30 @@ export const JobApplicationForm: React.FC<JobApplicationFormProps> = ({ jobTitle
   };
 
   const validatePhone = (phone: string): boolean => {
-    const phoneRegex = /^[\+]?[1-9][\d]{0,15}$/;
-    return phoneRegex.test(phone.replace(/[\s\-\(\)]/g, ''));
+    const phoneRegex = /^[\+]?[0-9]{10,15}$/;
+    const cleanPhone = phone.replace(/[\s\-\(\)]/g, '');
+    return phoneRegex.test(cleanPhone) && cleanPhone.length >= 10;
   };
 
   const validateFile = (file: File): string | null => {
-    const allowedTypes = ['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'];
-    const maxSize = 5 * 1024 * 1024; // 5MB
+    const allowedTypes = [
+      'application/pdf',
+      'application/msword',
+      'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+      'text/plain'
+    ];
+    const maxSize = 10 * 1024 * 1024; // 10MB
 
     if (!allowedTypes.includes(file.type)) {
-      return 'Please upload a PDF or Word document';
+      return 'Please upload a PDF, Word document, or text file';
     }
 
     if (file.size > maxSize) {
-      return 'File size must be less than 5MB';
+      return 'File size must be less than 10MB';
+    }
+
+    if (file.size === 0) {
+      return 'File appears to be empty. Please select a valid file';
     }
 
     return null;
@@ -71,28 +82,49 @@ export const JobApplicationForm: React.FC<JobApplicationFormProps> = ({ jobTitle
   const validateForm = (): boolean => {
     const newErrors: FormErrors = {};
 
+    // Name validation
     if (!formData.name.trim()) {
       newErrors.name = 'Name is required';
+    } else if (formData.name.trim().length < 2) {
+      newErrors.name = 'Name must be at least 2 characters long';
+    } else if (!/^[a-zA-Z\s]+$/.test(formData.name.trim())) {
+      newErrors.name = 'Name should only contain letters and spaces';
     }
 
+    // Email validation
     if (!formData.email.trim()) {
       newErrors.email = 'Email is required';
-    } else if (!validateEmail(formData.email)) {
+    } else if (!validateEmail(formData.email.trim())) {
       newErrors.email = 'Please enter a valid email address';
     }
 
+    // Phone validation
     if (!formData.phone.trim()) {
       newErrors.phone = 'Phone number is required';
-    } else if (!validatePhone(formData.phone)) {
-      newErrors.phone = 'Please enter a valid phone number';
+    } else if (!validatePhone(formData.phone.trim())) {
+      newErrors.phone = 'Please enter a valid phone number (10-15 digits)';
     }
 
+    // Position validation
     if (!formData.position.trim()) {
       newErrors.position = 'Position is required';
+    } else if (formData.position.trim().length < 2) {
+      newErrors.position = 'Position must be at least 2 characters long';
     }
 
+    // Resume validation
     if (!formData.resume) {
       newErrors.resume = 'Resume is required';
+    } else {
+      const fileError = validateFile(formData.resume);
+      if (fileError) {
+        newErrors.resume = fileError;
+      }
+    }
+
+    // Cover letter validation (optional but if provided, should have minimum length)
+    if (formData.coverLetter.trim() && formData.coverLetter.trim().length < 10) {
+      newErrors.coverLetter = 'Cover letter should be at least 10 characters long';
     }
 
     setErrors(newErrors);
@@ -106,6 +138,11 @@ export const JobApplicationForm: React.FC<JobApplicationFormProps> = ({ jobTitle
     // Clear error when user starts typing
     if (errors[name as keyof FormErrors]) {
       setErrors(prev => ({ ...prev, [name]: undefined }));
+    }
+
+    // Clear general error when any field changes
+    if (errors.general) {
+      setErrors(prev => ({ ...prev, general: undefined }));
     }
   };
 
@@ -151,40 +188,67 @@ export const JobApplicationForm: React.FC<JobApplicationFormProps> = ({ jobTitle
 
   const removeFile = () => {
     setFormData(prev => ({ ...prev, resume: null }));
+    setErrors(prev => ({ ...prev, resume: undefined }));
   };
 
-  const submitForm = async (formData: FormData): Promise<boolean> => {
-    // In a real application, this would send data to your backend API
-    // The backend would then send the email using a secure server-side service
-    
-    const submitData = new FormData();
-    submitData.append('name', formData.name);
-    submitData.append('email', formData.email);
-    submitData.append('phone', formData.phone);
-    submitData.append('position', formData.position);
-    submitData.append('coverLetter', formData.coverLetter);
-    submitData.append('honeypot', formData.honeypot);
-    
-    if (formData.resume) {
-      submitData.append('resume', formData.resume);
-    }
-
+  const submitForm = async (formData: FormData): Promise<{ success: boolean; message?: string }> => {
     try {
-      // Replace with your actual API endpoint
-      const response = await fetch('/api/job-application', {
-        method: 'POST',
-        body: submitData,
-      });
+      // Simulate API call delay
+      await new Promise(resolve => setTimeout(resolve, 2000));
 
-      return response.ok;
+      // Check honeypot (anti-spam)
+      if (formData.honeypot) {
+        return { success: false, message: 'Spam detected' };
+      }
+
+      // Simulate form submission
+      const submitData = new FormData();
+      submitData.append('name', formData.name.trim());
+      submitData.append('email', formData.email.trim());
+      submitData.append('phone', formData.phone.trim());
+      submitData.append('position', formData.position.trim());
+      submitData.append('coverLetter', formData.coverLetter.trim());
+      
+      if (formData.resume) {
+        submitData.append('resume', formData.resume);
+      }
+
+      // In a real application, this would send data to your backend API
+      // For demo purposes, we'll simulate success/failure
+      const shouldSucceed = Math.random() > 0.1; // 90% success rate for demo
+
+      if (shouldSucceed) {
+        // Store application data in localStorage for demo
+        const applicationData = {
+          id: Date.now().toString(),
+          name: formData.name.trim(),
+          email: formData.email.trim(),
+          phone: formData.phone.trim(),
+          position: formData.position.trim(),
+          coverLetter: formData.coverLetter.trim(),
+          resumeName: formData.resume?.name || '',
+          submittedAt: new Date().toISOString()
+        };
+
+        const existingApplications = JSON.parse(localStorage.getItem('jobApplications') || '[]');
+        existingApplications.push(applicationData);
+        localStorage.setItem('jobApplications', JSON.stringify(existingApplications));
+
+        return { success: true };
+      } else {
+        return { success: false, message: 'Server error. Please try again later.' };
+      }
     } catch (error) {
       console.error('Form submission error:', error);
-      return false;
+      return { success: false, message: 'Network error. Please check your connection and try again.' };
     }
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    // Clear previous errors
+    setErrors({});
 
     // Check honeypot (anti-spam)
     if (formData.honeypot) {
@@ -192,15 +256,20 @@ export const JobApplicationForm: React.FC<JobApplicationFormProps> = ({ jobTitle
     }
 
     if (!validateForm()) {
+      setErrors(prev => ({ 
+        ...prev, 
+        general: 'Please fix the errors above before submitting.' 
+      }));
       return;
     }
 
     setIsSubmitting(true);
+    setSubmitStatus('idle');
     
     try {
-      const success = await submitForm(formData);
+      const result = await submitForm(formData);
       
-      if (success) {
+      if (result.success) {
         setSubmitStatus('success');
         // Reset form
         setFormData({
@@ -212,15 +281,32 @@ export const JobApplicationForm: React.FC<JobApplicationFormProps> = ({ jobTitle
           coverLetter: '',
           honeypot: ''
         });
+        setErrors({});
       } else {
         setSubmitStatus('error');
+        setErrors({ general: result.message || 'An error occurred while submitting your application.' });
       }
     } catch (error) {
       console.error('Submission error:', error);
       setSubmitStatus('error');
+      setErrors({ general: 'An unexpected error occurred. Please try again.' });
     } finally {
       setIsSubmitting(false);
     }
+  };
+
+  const resetForm = () => {
+    setFormData({
+      name: '',
+      email: '',
+      phone: '',
+      position: jobTitle || '',
+      resume: null,
+      coverLetter: '',
+      honeypot: ''
+    });
+    setErrors({});
+    setSubmitStatus('idle');
   };
 
   if (submitStatus === 'success') {
@@ -232,19 +318,28 @@ export const JobApplicationForm: React.FC<JobApplicationFormProps> = ({ jobTitle
       >
         <CheckCircle className="w-16 h-16 text-green-500 mx-auto mb-4" />
         <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
-          Application Submitted!
+          Application Submitted Successfully!
         </h3>
         <p className="text-gray-600 dark:text-gray-400 mb-6">
-          Thank you for your interest in joining WebStitch. We'll review your application and get back to you soon.
+          Thank you for your interest in joining WebStitch. We've received your application and will review it carefully. 
+          You can expect to hear from us within 3-5 business days.
         </p>
-        {onClose && (
+        <div className="flex gap-3 justify-center">
           <button
-            onClick={onClose}
-            className="px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg hover:shadow-lg transition-all"
+            onClick={resetForm}
+            className="px-4 py-2 text-blue-600 dark:text-blue-400 border border-blue-600 dark:border-blue-400 rounded-lg hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-colors"
           >
-            Close
+            Submit Another
           </button>
-        )}
+          {onClose && (
+            <button
+              onClick={onClose}
+              className="px-6 py-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg hover:shadow-lg transition-all"
+            >
+              Close
+            </button>
+          )}
+        </div>
       </motion.div>
     );
   }
@@ -253,7 +348,7 @@ export const JobApplicationForm: React.FC<JobApplicationFormProps> = ({ jobTitle
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      className="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl border border-gray-100 dark:border-gray-700 overflow-hidden"
+      className="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl border border-gray-100 dark:border-gray-700 overflow-hidden max-w-2xl mx-auto"
     >
       <div className="p-8">
         <div className="flex items-center justify-between mb-6">
@@ -263,23 +358,29 @@ export const JobApplicationForm: React.FC<JobApplicationFormProps> = ({ jobTitle
           {onClose && (
             <button
               onClick={onClose}
-              className="p-2 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300"
+              className="p-2 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
             >
               <X className="w-6 h-6" />
             </button>
           )}
         </div>
 
-        {submitStatus === 'error' && (
-          <div className="mb-6 p-4 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg flex items-center">
-            <AlertCircle className="w-5 h-5 text-red-500 mr-3" />
-            <p className="text-red-700 dark:text-red-400">
-              There was an error submitting your application. Please try again.
-            </p>
+        {/* General Error Message */}
+        {(submitStatus === 'error' || errors.general) && (
+          <div className="mb-6 p-4 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg flex items-start">
+            <AlertCircle className="w-5 h-5 text-red-500 mr-3 mt-0.5 flex-shrink-0" />
+            <div>
+              <p className="text-red-700 dark:text-red-400 font-medium">
+                Submission Failed
+              </p>
+              <p className="text-red-600 dark:text-red-400 text-sm mt-1">
+                {errors.general || 'There was an error submitting your application. Please try again.'}
+              </p>
+            </div>
           </div>
         )}
 
-        <form onSubmit={handleSubmit} className="space-y-6">
+        <form onSubmit={handleSubmit} className="space-y-6" noValidate>
           {/* Honeypot field (hidden from users) */}
           <input
             type="text"
@@ -289,6 +390,7 @@ export const JobApplicationForm: React.FC<JobApplicationFormProps> = ({ jobTitle
             style={{ display: 'none' }}
             tabIndex={-1}
             autoComplete="off"
+            aria-hidden="true"
           />
 
           {/* Name */}
@@ -304,13 +406,18 @@ export const JobApplicationForm: React.FC<JobApplicationFormProps> = ({ jobTitle
               value={formData.name}
               onChange={handleInputChange}
               required
-              className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white ${
-                errors.name ? 'border-red-500' : 'border-gray-300 dark:border-gray-600'
+              maxLength={100}
+              className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white transition-colors ${
+                errors.name ? 'border-red-500 ring-2 ring-red-200' : 'border-gray-300 dark:border-gray-600'
               }`}
               placeholder="Enter your full name"
+              disabled={isSubmitting}
             />
             {errors.name && (
-              <p className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.name}</p>
+              <p className="mt-1 text-sm text-red-600 dark:text-red-400 flex items-center">
+                <AlertCircle className="w-4 h-4 mr-1" />
+                {errors.name}
+              </p>
             )}
           </div>
 
@@ -327,13 +434,18 @@ export const JobApplicationForm: React.FC<JobApplicationFormProps> = ({ jobTitle
               value={formData.email}
               onChange={handleInputChange}
               required
-              className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white ${
-                errors.email ? 'border-red-500' : 'border-gray-300 dark:border-gray-600'
+              maxLength={100}
+              className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white transition-colors ${
+                errors.email ? 'border-red-500 ring-2 ring-red-200' : 'border-gray-300 dark:border-gray-600'
               }`}
               placeholder="your@email.com"
+              disabled={isSubmitting}
             />
             {errors.email && (
-              <p className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.email}</p>
+              <p className="mt-1 text-sm text-red-600 dark:text-red-400 flex items-center">
+                <AlertCircle className="w-4 h-4 mr-1" />
+                {errors.email}
+              </p>
             )}
           </div>
 
@@ -350,13 +462,18 @@ export const JobApplicationForm: React.FC<JobApplicationFormProps> = ({ jobTitle
               value={formData.phone}
               onChange={handleInputChange}
               required
-              className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white ${
-                errors.phone ? 'border-red-500' : 'border-gray-300 dark:border-gray-600'
+              maxLength={20}
+              className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white transition-colors ${
+                errors.phone ? 'border-red-500 ring-2 ring-red-200' : 'border-gray-300 dark:border-gray-600'
               }`}
               placeholder="+91 9899721172"
+              disabled={isSubmitting}
             />
             {errors.phone && (
-              <p className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.phone}</p>
+              <p className="mt-1 text-sm text-red-600 dark:text-red-400 flex items-center">
+                <AlertCircle className="w-4 h-4 mr-1" />
+                {errors.phone}
+              </p>
             )}
           </div>
 
@@ -372,13 +489,18 @@ export const JobApplicationForm: React.FC<JobApplicationFormProps> = ({ jobTitle
               value={formData.position}
               onChange={handleInputChange}
               required
-              className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white ${
-                errors.position ? 'border-red-500' : 'border-gray-300 dark:border-gray-600'
+              maxLength={100}
+              className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white transition-colors ${
+                errors.position ? 'border-red-500 ring-2 ring-red-200' : 'border-gray-300 dark:border-gray-600'
               }`}
               placeholder="e.g., Full Stack Developer"
+              disabled={isSubmitting}
             />
             {errors.position && (
-              <p className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.position}</p>
+              <p className="mt-1 text-sm text-red-600 dark:text-red-400 flex items-center">
+                <AlertCircle className="w-4 h-4 mr-1" />
+                {errors.position}
+              </p>
             )}
           </div>
 
@@ -395,7 +517,7 @@ export const JobApplicationForm: React.FC<JobApplicationFormProps> = ({ jobTitle
                   : errors.resume
                   ? 'border-red-500 bg-red-50 dark:bg-red-900/20'
                   : 'border-gray-300 dark:border-gray-600 hover:border-gray-400 dark:hover:border-gray-500'
-              }`}
+              } ${isSubmitting ? 'opacity-50 cursor-not-allowed' : ''}`}
               onDragEnter={handleDrag}
               onDragLeave={handleDrag}
               onDragOver={handleDrag}
@@ -406,8 +528,9 @@ export const JobApplicationForm: React.FC<JobApplicationFormProps> = ({ jobTitle
                 id="resume"
                 name="resume"
                 onChange={handleFileChange}
-                accept=".pdf,.doc,.docx"
-                className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+                accept=".pdf,.doc,.docx,.txt"
+                className="absolute inset-0 w-full h-full opacity-0 cursor-pointer disabled:cursor-not-allowed"
+                disabled={isSubmitting}
               />
               
               {formData.resume ? (
@@ -426,7 +549,8 @@ export const JobApplicationForm: React.FC<JobApplicationFormProps> = ({ jobTitle
                   <button
                     type="button"
                     onClick={removeFile}
-                    className="p-1 text-gray-400 hover:text-red-500 transition-colors"
+                    disabled={isSubmitting}
+                    className="p-1 text-gray-400 hover:text-red-500 transition-colors disabled:cursor-not-allowed"
                   >
                     <X className="w-5 h-5" />
                   </button>
@@ -438,13 +562,16 @@ export const JobApplicationForm: React.FC<JobApplicationFormProps> = ({ jobTitle
                     Drop your resume here, or <span className="text-blue-600 dark:text-blue-400">browse</span>
                   </p>
                   <p className="text-sm text-gray-500">
-                    PDF, DOC, DOCX up to 5MB
+                    PDF, DOC, DOCX, TXT up to 10MB
                   </p>
                 </div>
               )}
             </div>
             {errors.resume && (
-              <p className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.resume}</p>
+              <p className="mt-1 text-sm text-red-600 dark:text-red-400 flex items-center">
+                <AlertCircle className="w-4 h-4 mr-1" />
+                {errors.resume}
+              </p>
             )}
           </div>
 
@@ -460,9 +587,26 @@ export const JobApplicationForm: React.FC<JobApplicationFormProps> = ({ jobTitle
               value={formData.coverLetter}
               onChange={handleInputChange}
               rows={4}
-              className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
-              placeholder="Tell us why you're interested in this position..."
+              maxLength={1000}
+              className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white transition-colors resize-vertical ${
+                errors.coverLetter ? 'border-red-500 ring-2 ring-red-200' : 'border-gray-300 dark:border-gray-600'
+              }`}
+              placeholder="Tell us why you're interested in this position and what makes you a great fit..."
+              disabled={isSubmitting}
             />
+            <div className="flex justify-between items-center mt-1">
+              {errors.coverLetter ? (
+                <p className="text-sm text-red-600 dark:text-red-400 flex items-center">
+                  <AlertCircle className="w-4 h-4 mr-1" />
+                  {errors.coverLetter}
+                </p>
+              ) : (
+                <div></div>
+              )}
+              <p className="text-xs text-gray-500">
+                {formData.coverLetter.length}/1000
+              </p>
+            </div>
           </div>
 
           {/* Submit Button */}
@@ -472,7 +616,7 @@ export const JobApplicationForm: React.FC<JobApplicationFormProps> = ({ jobTitle
             className={`w-full py-4 rounded-lg font-semibold transition-all flex items-center justify-center ${
               isSubmitting
                 ? 'bg-gray-400 cursor-not-allowed'
-                : 'bg-gradient-to-r from-blue-600 to-purple-600 text-white hover:shadow-lg'
+                : 'bg-gradient-to-r from-blue-600 to-purple-600 text-white hover:shadow-lg hover:scale-[1.02]'
             }`}
             whileHover={!isSubmitting ? { scale: 1.02 } : {}}
             whileTap={!isSubmitting ? { scale: 0.98 } : {}}
@@ -480,7 +624,7 @@ export const JobApplicationForm: React.FC<JobApplicationFormProps> = ({ jobTitle
             {isSubmitting ? (
               <>
                 <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-2"></div>
-                Submitting...
+                Submitting Application...
               </>
             ) : (
               <>
@@ -492,7 +636,15 @@ export const JobApplicationForm: React.FC<JobApplicationFormProps> = ({ jobTitle
         </form>
 
         <p className="mt-4 text-xs text-gray-500 dark:text-gray-400 text-center">
-          By submitting this form, you agree to our privacy policy and terms of service.
+          By submitting this form, you agree to our{' '}
+          <a href="/privacy" className="text-blue-600 dark:text-blue-400 hover:underline">
+            privacy policy
+          </a>{' '}
+          and{' '}
+          <a href="/terms" className="text-blue-600 dark:text-blue-400 hover:underline">
+            terms of service
+          </a>
+          . We'll keep your information secure and only use it for recruitment purposes.
         </p>
       </div>
     </motion.div>
