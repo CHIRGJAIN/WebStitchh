@@ -1,6 +1,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Users, Target, Award, Heart, Globe, Zap } from 'lucide-react';
+import { MetaTags } from '../components/SEO/MetaTags';
+import { LazyImage } from '../components/Performance/LazyImage';
 
 const values = [
   {
@@ -59,6 +61,13 @@ const team = [
 export const About: React.FC = () => {
   return (
     <div className="pt-16 min-h-screen bg-gradient-to-br from-gray-50 to-white dark:from-gray-900 dark:to-gray-800">
+      <MetaTags
+        title="About WebStitch - Our Story, Team & Values"
+        description="Learn about WebStitch's journey from a startup to a leading web development company in Greater Noida. Meet our team and discover our values and mission."
+        keywords="about WebStitch, web development company Greater Noida, our team, company values, web development agency story"
+        url="/about"
+      />
+
       {/* Hero Section */}
       <section className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -123,10 +132,10 @@ export const About: React.FC = () => {
               className="relative"
             >
               <div className="aspect-w-16 aspect-h-12 rounded-2xl overflow-hidden shadow-2xl">
-                <img
+                <LazyImage
                   src="https://images.pexels.com/photos/3184360/pexels-photo-3184360.jpeg?auto=compress&cs=tinysrgb&w=800"
                   alt="WebStitch Office"
-                  className="w-full h-full object-cover"
+                  className="w-full h-96 object-cover"
                 />
               </div>
               <div className="absolute -bottom-6 -right-6 bg-gradient-to-br from-blue-500 to-purple-600 p-6 rounded-xl text-white">
@@ -208,10 +217,10 @@ export const About: React.FC = () => {
               >
                 <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 dark:border-gray-700">
                   <div className="relative mb-6">
-                    <img
+                    <LazyImage
                       src={member.image}
                       alt={member.name}
-                      className="w-24 h-24 rounded-full mx-auto object-cover group-hover:scale-110 transition-transform"
+                      className="w-24 h-24 rounded-full mx-auto object-cover"
                     />
                     <div className="absolute inset-0 rounded-full bg-gradient-to-br from-blue-500/20 to-purple-500/20 group-hover:opacity-100 opacity-0 transition-opacity"></div>
                   </div>
@@ -250,7 +259,7 @@ export const About: React.FC = () => {
                 📍 Greater Noida, India
               </div>
               <div className="text-gray-600 dark:text-gray-400">
-                📞 +91 9899721172
+                📞 9899721172
               </div>
             </div>
           </motion.div>

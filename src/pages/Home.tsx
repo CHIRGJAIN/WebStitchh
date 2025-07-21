@@ -4,6 +4,9 @@ import { Link } from 'react-router-dom';
 import { ArrowRight, Code, Palette, Smartphone, TrendingUp, Users, Award, Zap } from 'lucide-react';
 import { HeroAnimation } from '../components/3D/HeroAnimation';
 import { FloatingElements } from '../components/3D/FloatingElements';
+import { MetaTags } from '../components/SEO/MetaTags';
+import { testimonials } from '../data/testimonials';
+import { LazyImage } from '../components/Performance/LazyImage';
 
 const stats = [
   { label: 'Projects Delivered', value: '500+', icon: Code },
@@ -39,9 +42,18 @@ const services = [
   }
 ];
 
+const featuredTestimonials = testimonials.filter(t => t.featured).slice(0, 3);
+
 export const Home: React.FC = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-white dark:from-gray-900 dark:to-gray-800">
+      <MetaTags
+        title="WebStitch - Code. Craft. Connect."
+        description="Leading-edge web & app development company in Greater Noida. We create innovative digital solutions with cutting-edge technology and exceptional design."
+        keywords="web development, app development, UI/UX design, Greater Noida, React, Node.js, cloud solutions, digital transformation"
+        url="/"
+      />
+
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
         <HeroAnimation />
@@ -58,8 +70,9 @@ export const Home: React.FC = () => {
                 Code. Craft. Connect.
               </span>
             </h1>
-            <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 mb-8 max-w-3xl mx-auto">
-              Transforming ideas into powerful digital experiences with cutting-edge technology and innovative design
+            <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 mb-8 max-w-4xl mx-auto leading-relaxed">
+              Empowering businesses with innovative, scalable, and secure digital solutions. 
+              At WebStitch, we transform your ideas into powerful digital experiences that drive growth and success.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <motion.div
@@ -168,6 +181,61 @@ export const Home: React.FC = () => {
         </div>
       </section>
 
+      {/* Testimonials Section */}
+      <section className="py-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-gray-900 to-gray-600 dark:from-white dark:to-gray-300 bg-clip-text text-transparent">
+              Trusted by Industry Leaders
+            </h2>
+            <p className="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
+              See what our clients say about working with WebStitch
+            </p>
+          </motion.div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            {featuredTestimonials.map((testimonial, index) => (
+              <motion.div
+                key={testimonial.id}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-lg border border-gray-100 dark:border-gray-700"
+              >
+                <div className="flex items-center mb-4">
+                  {[...Array(testimonial.rating)].map((_, i) => (
+                    <div key={i} className="w-5 h-5 text-yellow-400">⭐</div>
+                  ))}
+                </div>
+                <p className="text-gray-600 dark:text-gray-400 mb-6 italic">
+                  "{testimonial.content}"
+                </p>
+                <div className="flex items-center">
+                  <LazyImage
+                    src={testimonial.avatar}
+                    alt={testimonial.name}
+                    className="w-12 h-12 rounded-full mr-4"
+                  />
+                  <div>
+                    <div className="font-semibold text-gray-900 dark:text-white">
+                      {testimonial.name}
+                    </div>
+                    <div className="text-sm text-gray-600 dark:text-gray-400">
+                      {testimonial.role}, {testimonial.company}
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* CTA Section */}
       <section className="py-20 bg-gradient-to-r from-blue-600 to-purple-600">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -177,10 +245,10 @@ export const Home: React.FC = () => {
             transition={{ duration: 0.8 }}
           >
             <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-              Ready to Transform Your Ideas?
+              Ready to Transform Your Business?
             </h2>
             <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
-              Let's collaborate to create something extraordinary. Get in touch with our team today.
+              Let's collaborate to create something extraordinary. Contact us today to discuss your project and get a free consultation.
             </p>
             <motion.div
               whileHover={{ scale: 1.05 }}

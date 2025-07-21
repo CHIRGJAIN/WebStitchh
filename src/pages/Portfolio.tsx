@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ExternalLink, Github, Play, Filter } from 'lucide-react';
+import { ExternalLink, Github, Play, Filter, X } from 'lucide-react';
+import { MetaTags } from '../components/SEO/MetaTags';
+import { LazyImage } from '../components/Performance/LazyImage';
 
 const categories = ['All', 'Web Development', 'Mobile Apps', 'UI/UX Design', 'E-commerce'];
 
@@ -83,6 +85,13 @@ export const Portfolio: React.FC = () => {
 
   return (
     <div className="pt-16 min-h-screen bg-gradient-to-br from-gray-50 to-white dark:from-gray-900 dark:to-gray-800">
+      <MetaTags
+        title="Portfolio - Our Best Web Development Projects"
+        description="Explore WebStitch's portfolio of successful web development, mobile app, and UI/UX design projects. See how we've helped businesses transform digitally."
+        keywords="web development portfolio, mobile app portfolio, UI UX design projects, Greater Noida web development, case studies"
+        url="/portfolio"
+      />
+
       {/* Hero Section */}
       <section className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -148,7 +157,7 @@ export const Portfolio: React.FC = () => {
                 >
                   <div className="bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 dark:border-gray-700">
                     <div className="relative overflow-hidden">
-                      <img
+                      <LazyImage
                         src={project.image}
                         alt={project.title}
                         className={`w-full object-cover group-hover:scale-110 transition-transform duration-300 ${
@@ -233,7 +242,7 @@ export const Portfolio: React.FC = () => {
               onClick={(e) => e.stopPropagation()}
             >
               <div className="relative">
-                <img
+                <LazyImage
                   src={selectedProject.image}
                   alt={selectedProject.title}
                   className="w-full h-64 object-cover"

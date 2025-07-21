@@ -1,19 +1,20 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { MapPin, Phone, Mail, MessageCircle, Send, Clock, CheckCircle } from 'lucide-react';
+import { MetaTags } from '../components/SEO/MetaTags';
 
 const contactMethods = [
   {
     icon: Phone,
     title: 'Phone',
-    value: '+91 9899721172',
+    value: '9899721172',
     description: 'Mon-Fri 9AM-6PM IST',
     color: 'from-green-500 to-blue-500'
   },
   {
     icon: Mail,
     title: 'Email',
-    value: 'hello@webstitch.in',
+    value: 'webstitchh@gmail.com',
     description: 'We reply within 24 hours',
     color: 'from-blue-500 to-purple-500'
   },
@@ -60,6 +61,13 @@ export const Contact: React.FC = () => {
 
   return (
     <div className="pt-16 min-h-screen bg-gradient-to-br from-gray-50 to-white dark:from-gray-900 dark:to-gray-800">
+      <MetaTags
+        title="Contact Us - Get Your Free Consultation"
+        description="Ready to transform your business? Contact WebStitch for web development, app development, and digital solutions. Located in Greater Noida, serving clients globally."
+        keywords="contact web development company, Greater Noida web developers, free consultation, project quote, web development services"
+        url="/contact"
+      />
+
       {/* Hero Section */}
       <section className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -73,7 +81,8 @@ export const Contact: React.FC = () => {
               Get In Touch
             </h1>
             <p className="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
-              Ready to transform your ideas into reality? Let's discuss your project and explore how we can help you achieve your goals.
+              Ready to transform your ideas into reality? Let's discuss your project and explore how we can help you achieve your goals. 
+              Get a free consultation and project quote today.
             </p>
           </motion.div>
         </div>
@@ -300,11 +309,11 @@ export const Contact: React.FC = () => {
                   For urgent matters, give us a call directly:
                 </p>
                 <a
-                  href="tel:+919899721172"
+                  href="tel:9899721172"
                   className="inline-flex items-center text-lg font-semibold hover:underline"
                 >
                   <Phone className="w-5 h-5 mr-2" />
-                  +91 9899721172
+                  9899721172
                 </a>
               </div>
             </motion.div>
