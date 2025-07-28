@@ -124,7 +124,7 @@ export const LocalBusinessSchema: React.FC = () => {
     name: 'WebStitch',
     description: 'Leading-edge web & app development company in Greater Noida',
     url: 'https://webstitch.in',
-    telephone: '+91-9899721172',
+    telephone: '+91-9876543210',
     email: 'webstitchh@gmail.com',
     address: {
       '@type': 'PostalAddress',
