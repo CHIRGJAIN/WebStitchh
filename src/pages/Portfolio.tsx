@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ExternalLink, Github, Play, Filter, X } from 'lucide-react';
+import { ExternalLink, Github, X } from 'lucide-react';
 import { MetaTags } from '../components/SEO/MetaTags';
 import { LazyImage } from '../components/Performance/LazyImage';
 
