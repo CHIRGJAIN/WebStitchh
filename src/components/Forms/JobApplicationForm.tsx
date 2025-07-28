@@ -466,12 +466,9 @@ export const JobApplicationForm: React.FC<JobApplicationFormProps> = ({ jobTitle
               className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white transition-colors ${
                 errors.phone ? 'border-red-500 ring-2 ring-red-200' : 'border-gray-300 dark:border-gray-600'
               }`}
-// <<<<<<< HEAD
+
               placeholder="+91 9876543210"
-// =======
-              placeholder="+91 9899721172"
               disabled={isSubmitting}
-{/* >>>>>>> 88452653608ac42d70e0c83d433121f13aefb947 */}
             />
             {errors.phone && (
               <p className="mt-1 text-sm text-red-600 dark:text-red-400 flex items-center">

@@ -9,9 +9,9 @@ import { testimonials } from '../data/testimonials';
 import { LazyImage } from '../components/Performance/LazyImage';
 
 const stats = [
-  { label: 'Projects Delivered', value: '500+', icon: Code },
-  { label: 'Happy Clients', value: '200+', icon: Users },
-  { label: 'Years Experience', value: '8+', icon: Award },
+  { label: 'Projects Delivered', value: '50+', icon: Code },
+  { label: 'Happy Clients', value: '50+', icon: Users },
+  { label: 'Years Experience', value: '2+', icon: Award },
   { label: 'Success Rate', value: '98%', icon: TrendingUp }
 ];
 

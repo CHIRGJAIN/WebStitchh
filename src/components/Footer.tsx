@@ -81,9 +81,14 @@ export const Footer: React.FC = () => {
                   <Code className="w-6 h-6 text-white" />
                 </div>
               </motion.div>
-              <span className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
-                WebStitch
-              </span>
+             <Link to="/" className="flex items-center space-x-2">
+                         <img 
+                           src="/webstitch-logo.png" 
+                           alt="WebStitch Logo" 
+                           className="h-30 w-40 rounded-lg"
+                         />
+                       </Link>
+             
             </Link>
             
             <p className="text-gray-400 mb-6 leading-relaxed">

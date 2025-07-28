@@ -17,8 +17,8 @@ const iconMap: { [key: string]: React.ComponentType<any> } = {
 };
 
 const stats = [
-  { label: 'Projects Completed', value: '500+', icon: Award },
-  { label: 'Happy Clients', value: '200+', icon: Users },
+  { label: 'Projects Completed', value: '50+', icon: Award },
+  { label: 'Happy Clients', value: '50+', icon: Users },
   { label: 'Success Rate', value: '98%', icon: TrendingUp },
   { label: 'Average Rating', value: '4.9/5', icon: Star }
 ];
@@ -96,7 +96,10 @@ export const Services: React.FC = () => {
                   }`}
                   onClick={() => setSelectedService(selectedService === service.id ? null : service.id)}
                 >
-                  <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 dark:border-gray-700 overflow-hidden">
+                  <div className={`bg-white dark:bg-gray-800 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 dark:border-gray-700 overflow-hidden ${
+                  service.title === 'E-commerce Solutions' ? 'w-[59.5vw] mx-auto' : 'w-full'
+                  }`}>
+
                     <div className="grid md:grid-cols-2 gap-8">
                       <div className="p-8">
                         <div className="flex items-center mb-6">
