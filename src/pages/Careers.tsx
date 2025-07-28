@@ -73,6 +73,7 @@ export const Careers: React.FC = () => {
   const [selectedDepartment, setSelectedDepartment] = useState('All');
   const [showApplicationForm, setShowApplicationForm] = useState(false);
   const [applicationJobTitle, setApplicationJobTitle] = useState('');
+  const [applicationJobId, setApplicationJobId] = useState('');
   const [searchParams] = useSearchParams();
 
   // Check if there's a job parameter in URL
@@ -81,6 +82,7 @@ export const Careers: React.FC = () => {
     if (jobId) {
       const job = jobPositions.find(j => j.id === jobId);
       if (job) {
+        setApplicationJobId(job.id);
         setApplicationJobTitle(job.title);
         setShowApplicationForm(true);
       }
@@ -357,6 +359,7 @@ export const Careers: React.FC = () => {
                       </button>
                       <button
                         onClick={() => {
+                          setApplicationJobId(job.id);
                           setApplicationJobTitle(job.title);
                           setShowApplicationForm(true);
                         }}
@@ -420,6 +423,19 @@ export const Careers: React.FC = () => {
                           </ul>
                         </div>
                       </div>
+
+                      <div className="mt-6 pt-6 border-t border-gray-200 dark:border-gray-700">
+                        <button
+                          onClick={() => {
+                            setApplicationJobId(job.id);
+                            setApplicationJobTitle(job.title);
+                            setShowApplicationForm(true);
+                          }}
+                          className="w-full md:w-auto px-8 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg hover:shadow-lg transition-all font-semibold"
+                        >
+                          Apply for this Position
+                        </button>
+                      </div>
                     </motion.div>
                   )}
                 </div>
@@ -461,13 +477,14 @@ export const Careers: React.FC = () => {
 
       {/* Application Form Modal */}
       {showApplicationForm && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm overflow-y-auto">
           <div className="max-w-2xl w-full max-h-[90vh] overflow-y-auto">
             <JobApplicationForm
               jobTitle={applicationJobTitle}
               onClose={() => {
                 setShowApplicationForm(false);
                 setApplicationJobTitle('');
+                setApplicationJobId('');
               }}
             />
           </div>
