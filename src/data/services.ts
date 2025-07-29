@@ -7,97 +7,123 @@ export interface Service {
   technologies: string[];
   image: string;
   featured: boolean;
+  aiPowered?: boolean;
+  automationLevel?: 'Basic' | 'Advanced' | 'Enterprise';
 }
 
 export const services: Service[] = [
   {
-    id: 'web-app-development',
-    title: 'Web App Development',
-    description: 'Build robust, scalable web applications tailored to your business needs. We use the latest frameworks and cloud technologies to deliver fast, secure, and maintainable solutions.',
-    icon: 'Code',
+    id: 'ai-solutions',
+    title: 'AI Solutions & Machine Learning',
+    description: 'Transform your business with intelligent AI systems that learn, adapt, and optimize operations automatically. From predictive analytics to natural language processing.',
+    icon: 'Brain',
     benefits: [
-      'Custom-built solutions for your unique requirements',
-      'Scalable architecture that grows with your business',
-      'Modern frameworks for optimal performance',
-      'Cloud-native deployment and hosting'
+      'Custom AI model development and training',
+      'Intelligent automation and decision-making',
+      'Predictive analytics and forecasting',
+      'Natural language processing and chatbots',
+      'Computer vision and image recognition',
+      'Real-time data processing and insights'
     ],
-    technologies: ['React', 'Next.js', 'Node.js', 'TypeScript', 'AWS', 'Docker'],
+    technologies: ['TensorFlow', 'PyTorch', 'OpenAI GPT', 'Hugging Face', 'Python', 'CUDA'],
+    image: 'https://images.pexels.com/photos/8386440/pexels-photo-8386440.jpeg?auto=compress&cs=tinysrgb&w=800',
+    featured: true,
+    aiPowered: true,
+    automationLevel: 'Enterprise'
+  },
+  {
+    id: 'intelligent-automation',
+    title: 'Intelligent Process Automation',
+    description: 'Streamline operations with AI-driven automation that handles complex workflows, reduces manual tasks, and scales with your business growth.',
+    icon: 'Zap',
+    benefits: [
+      'Robotic Process Automation (RPA)',
+      'Workflow orchestration and optimization',
+      'Document processing and data extraction',
+      'Intelligent task scheduling and routing',
+      'API integration and system connectivity',
+      'Performance monitoring and analytics'
+    ],
+    technologies: ['UiPath', 'Automation Anywhere', 'Zapier', 'Microsoft Power Automate', 'Node.js', 'Python'],
+    image: 'https://images.pexels.com/photos/8386434/pexels-photo-8386434.jpeg?auto=compress&cs=tinysrgb&w=800',
+    featured: true,
+    aiPowered: true,
+    automationLevel: 'Advanced'
+  },
+  {
+    id: 'ai-powered-web-apps',
+    title: 'AI-Powered Web Applications',
+    description: 'Next-generation web applications with built-in AI capabilities, intelligent user interfaces, and automated content management systems.',
+    icon: 'Globe',
+    benefits: [
+      'AI-enhanced user experiences and personalization',
+      'Intelligent content management and curation',
+      'Automated testing and quality assurance',
+      'Smart analytics and user behavior insights',
+      'Voice and conversational interfaces',
+      'Progressive web app capabilities'
+    ],
+    technologies: ['React', 'Next.js', 'TensorFlow.js', 'WebRTC', 'GraphQL', 'WebAssembly'],
     image: 'https://images.pexels.com/photos/11035380/pexels-photo-11035380.jpeg?auto=compress&cs=tinysrgb&w=800',
-    featured: true
+    featured: true,
+    aiPowered: true,
+    automationLevel: 'Advanced'
   },
   {
-    id: 'ui-ux-design',
-    title: 'UI/UX Design',
-    description: 'Create stunning, user-centered designs that convert visitors into customers. Our design process focuses on usability, accessibility, and brand consistency.',
-    icon: 'Palette',
-    benefits: [
-      'User research and persona development',
-      'Wireframing and prototyping',
-      'Responsive design for all devices',
-      'Accessibility-first approach (WCAG 2.1 AA)'
-    ],
-    technologies: ['Figma', 'Adobe Creative Suite', 'Sketch', 'InVision', 'Principle'],
-    image: 'https://images.pexels.com/photos/196644/pexels-photo-196644.jpeg?auto=compress&cs=tinysrgb&w=800',
-    featured: true
-  },
-  {
-    id: 'ecommerce-solutions',
-    title: 'E-commerce Solutions',
-    description: 'Launch and scale your online store with our comprehensive e-commerce solutions. From payment integration to inventory management, we handle it all.',
-    icon: 'ShoppingCart',
-    benefits: [
-      'Secure payment gateway integration',
-      'Inventory and order management',
-      'SEO-optimized product pages',
-      'Mobile-first shopping experience'
-    ],
-    technologies: ['Shopify', 'WooCommerce', 'Magento', 'Stripe', 'PayPal'],
-    image: 'https://images.pexels.com/photos/3584994/pexels-photo-3584994.jpeg?auto=compress&cs=tinysrgb&w=800',
-    featured: false
-  },
-  {
-    id: 'mobile-app-development',
-    title: 'Mobile App Development',
-    description: 'Native and cross-platform mobile applications that deliver exceptional user experiences on iOS and Android devices.',
+    id: 'smart-mobile-apps',
+    title: 'Smart Mobile Applications',
+    description: 'Intelligent mobile apps with AI features like image recognition, voice commands, predictive text, and automated user assistance.',
     icon: 'Smartphone',
     benefits: [
-      'Native iOS and Android development',
-      'Cross-platform solutions with React Native',
-      'App Store optimization and deployment',
-      'Push notifications and analytics'
+      'Cross-platform AI-enabled mobile development',
+      'On-device machine learning capabilities',
+      'Intelligent push notifications and engagement',
+      'Voice recognition and natural language interfaces',
+      'Augmented reality and computer vision features',
+      'Offline AI functionality and edge computing'
     ],
-    technologies: ['React Native', 'Flutter', 'Swift', 'Kotlin', 'Firebase'],
+    technologies: ['React Native', 'Flutter', 'TensorFlow Lite', 'Core ML', 'ARKit', 'MLKit'],
     image: 'https://images.pexels.com/photos/4033148/pexels-photo-4033148.jpeg?auto=compress&cs=tinysrgb&w=800',
-    featured: true
+    featured: true,
+    aiPowered: true,
+    automationLevel: 'Advanced'
   },
   {
-    id: 'cloud-integration',
-    title: 'Cloud Integration',
-    description: 'Migrate to the cloud and optimize your infrastructure for scalability, security, and cost-effectiveness with our cloud expertise.',
-    icon: 'Cloud',
+    id: 'ai-chatbots-assistants',
+    title: 'AI Chatbots & Virtual Assistants',
+    description: 'Sophisticated conversational AI that understands context, learns from interactions, and provides intelligent customer support 24/7.',
+    icon: 'MessageCircle',
     benefits: [
-      'AWS, Azure, and Google Cloud expertise',
-      'Serverless architecture implementation',
-      'DevOps and CI/CD pipeline setup',
-      'Cost optimization and monitoring'
+      'Natural language understanding and generation',
+      'Multi-channel deployment (web, mobile, social)',
+      'Integration with business systems and databases',
+      'Sentiment analysis and emotion detection',
+      'Multilingual support and translation',
+      'Continuous learning and improvement'
     ],
-    technologies: ['AWS', 'Azure', 'Google Cloud', 'Kubernetes', 'Terraform'],
-    image: 'https://images.pexels.com/photos/4164418/pexels-photo-4164418.jpeg?auto=compress&cs=tinysrgb&w=800',
-    featured: false
+    technologies: ['OpenAI GPT', 'Dialogflow', 'Rasa', 'Microsoft Bot Framework', 'Wit.ai', 'IBM Watson'],
+    image: 'https://images.pexels.com/photos/8386422/pexels-photo-8386422.jpeg?auto=compress&cs=tinysrgb&w=800',
+    featured: false,
+    aiPowered: true,
+    automationLevel: 'Advanced'
   },
   {
-    id: 'seo-digital-marketing',
-    title: 'SEO & Digital Marketing',
-    description: 'Boost your online visibility and drive organic traffic with our comprehensive SEO and digital marketing strategies.',
-    icon: 'TrendingUp',
+    id: 'data-analytics-ai',
+    title: 'AI-Driven Data Analytics',
+    description: 'Transform raw data into actionable insights with machine learning algorithms, predictive modeling, and intelligent visualization dashboards.',
+    icon: 'BarChart3',
     benefits: [
-      'Technical SEO audits and optimization',
-      'Content strategy and creation',
-      'Local SEO for Greater Noida businesses',
-      'Performance tracking and reporting'
+      'Predictive analytics and forecasting models',
+      'Real-time data processing and visualization',
+      'Anomaly detection and alert systems',
+      'Customer behavior analysis and segmentation',
+      'Business intelligence and reporting automation',
+      'Data pipeline optimization and management'
     ],
-    technologies: ['Google Analytics', 'Search Console', 'SEMrush', 'Ahrefs'],
-    image: 'https://images.pexels.com/photos/265087/pexels-photo-265087.jpeg?auto=compress&cs=tinysrgb&w=800',
-    featured: false
+    technologies: ['Python', 'R', 'Apache Spark', 'Tableau', 'Power BI', 'Elasticsearch'],
+    image: 'https://images.pexels.com/photos/590020/pexels-photo-590020.jpeg?auto=compress&cs=tinysrgb&w=800',
+    featured: false,
+    aiPowered: true,
+    automationLevel: 'Enterprise'
   }
 ];
