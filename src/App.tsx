@@ -6,7 +6,7 @@ import { Navigation } from './components/Navigation';
 import { Footer } from './components/Footer';
 import { CookieConsent } from './components/Performance/CookieConsent';
 import { Home } from './pages/Home';
-import { About } from './pages/About';
+import About from './pages/About';
 import { Services } from './pages/Services';
 import { Blog } from './pages/Blog';
 import { Careers } from './pages/Careers';
