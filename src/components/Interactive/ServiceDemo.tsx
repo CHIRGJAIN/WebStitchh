@@ -178,7 +178,7 @@ export const ServiceDemo: React.FC<ServiceDemoProps> = ({ service, title }) => {
   };
 
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-2xl border border-gray-100 dark:border-gray-700">
+    <div className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-2xl p-8 shadow-2xl border border-gray-100 dark:border-gray-700 hover:shadow-3xl transition-all duration-300">
       <div className="flex items-center justify-between mb-8">
         <h3 className="text-2xl font-bold text-gray-900 dark:text-white">
           {title} Demo
@@ -187,7 +187,7 @@ export const ServiceDemo: React.FC<ServiceDemoProps> = ({ service, title }) => {
           <motion.button
             onClick={handlePlay}
             disabled={isPlaying}
-            className="flex items-center px-4 py-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg font-semibold hover:shadow-lg transition-all disabled:opacity-50"
+            className="flex items-center px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl font-semibold hover:shadow-lg hover:scale-105 transition-all disabled:opacity-50 disabled:hover:scale-100"
             whileHover={!isPlaying ? { scale: 1.05 } : {}}
             whileTap={!isPlaying ? { scale: 0.95 } : {}}
           >
@@ -197,7 +197,7 @@ export const ServiceDemo: React.FC<ServiceDemoProps> = ({ service, title }) => {
           <motion.button
             onClick={handlePause}
             disabled={!isPlaying}
-            className="flex items-center px-4 py-2 bg-orange-500 text-white rounded-lg font-semibold hover:bg-orange-600 transition-colors disabled:opacity-50"
+            className="flex items-center px-6 py-3 bg-orange-500 text-white rounded-xl font-semibold hover:bg-orange-600 hover:scale-105 transition-all disabled:opacity-50 disabled:hover:scale-100"
             whileHover={isPlaying ? { scale: 1.05 } : {}}
             whileTap={isPlaying ? { scale: 0.95 } : {}}
           >
@@ -206,7 +206,7 @@ export const ServiceDemo: React.FC<ServiceDemoProps> = ({ service, title }) => {
           </motion.button>
           <motion.button
             onClick={handleReset}
-            className="flex items-center px-4 py-2 bg-gray-500 text-white rounded-lg font-semibold hover:bg-gray-600 transition-colors"
+            className="flex items-center px-6 py-3 bg-gray-500 text-white rounded-xl font-semibold hover:bg-gray-600 hover:scale-105 transition-all"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
@@ -218,7 +218,7 @@ export const ServiceDemo: React.FC<ServiceDemoProps> = ({ service, title }) => {
 
       {/* Demo Visualization */}
       <div className="mb-8">
-        <div className="relative h-64 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-700 dark:to-gray-800 rounded-xl overflow-hidden">
+        <div className="relative h-80 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-700 dark:to-gray-800 rounded-2xl overflow-hidden shadow-inner border-2 border-gray-200 dark:border-gray-600">
           <AnimatePresence mode="wait">
             {demoSteps.map((step, index) => (
               index === currentStep && (
@@ -231,7 +231,7 @@ export const ServiceDemo: React.FC<ServiceDemoProps> = ({ service, title }) => {
                 >
                   <div className="text-center">
                     <motion.div
-                      className={`inline-flex items-center justify-center w-24 h-24 bg-gradient-to-br ${step.color} rounded-full mb-4`}
+                      className={`inline-flex items-center justify-center w-32 h-32 bg-gradient-to-br ${step.color} rounded-full mb-6 shadow-2xl`}
                       animate={isPlaying ? { 
                         rotate: 360,
                         scale: [1, 1.1, 1]
@@ -241,12 +241,12 @@ export const ServiceDemo: React.FC<ServiceDemoProps> = ({ service, title }) => {
                         scale: { duration: 1, repeat: Infinity }
                       }}
                     >
-                      <step.icon className="w-12 h-12 text-white" />
+                      <step.icon className="w-16 h-16 text-white" />
                     </motion.div>
-                    <h4 className="text-xl font-bold text-gray-900 dark:text-white mb-2">
+                    <h4 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
                       {step.title}
                     </h4>
-                    <p className="text-gray-600 dark:text-gray-400">
+                    <p className="text-lg text-gray-600 dark:text-gray-400 max-w-md mx-auto">
                       {step.description}
                     </p>
                   </div>
@@ -257,9 +257,9 @@ export const ServiceDemo: React.FC<ServiceDemoProps> = ({ service, title }) => {
 
           {/* Progress Bar */}
           {isPlaying && (
-            <div className="absolute bottom-0 left-0 right-0 h-2 bg-gray-200 dark:bg-gray-600">
+            <div className="absolute bottom-0 left-0 right-0 h-3 bg-gray-200 dark:bg-gray-600 rounded-b-2xl overflow-hidden">
               <motion.div
-                className="h-full bg-gradient-to-r from-blue-500 to-purple-500"
+                className="h-full bg-gradient-to-r from-blue-500 to-purple-500 shadow-lg"
                 style={{ width: `${progress}%` }}
                 transition={{ duration: 0.1 }}
               />
@@ -275,13 +275,14 @@ export const ServiceDemo: React.FC<ServiceDemoProps> = ({ service, title }) => {
             key={step.id}
             className={`flex items-center p-4 rounded-lg transition-all ${
               index === currentStep
-                ? 'bg-blue-50 dark:bg-blue-900/20 border-2 border-blue-500'
+                ? 'bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 border-2 border-blue-500 shadow-lg'
                 : index < currentStep
-                ? 'bg-green-50 dark:bg-green-900/20 border-2 border-green-500'
-                : 'bg-gray-50 dark:bg-gray-700 border-2 border-gray-200 dark:border-gray-600'
+                ? 'bg-gradient-to-r from-green-50 to-blue-50 dark:from-green-900/20 dark:to-blue-900/20 border-2 border-green-500 shadow-md'
+                : 'bg-gray-50 dark:bg-gray-700 border-2 border-gray-200 dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-600'
             }`}
             animate={index === currentStep && isPlaying ? { scale: [1, 1.02, 1] } : {}}
             transition={{ duration: 1, repeat: Infinity }}
+            whileHover={{ scale: 1.01 }}
           >
             <div className={`w-12 h-12 rounded-full flex items-center justify-center mr-4 ${
               index === currentStep
@@ -308,21 +309,21 @@ export const ServiceDemo: React.FC<ServiceDemoProps> = ({ service, title }) => {
       </div>
 
       {/* Demo Stats */}
-      <div className="mt-8 grid grid-cols-3 gap-4 p-4 bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 rounded-lg">
+      <div className="mt-8 grid grid-cols-3 gap-6 p-6 bg-gradient-to-r from-blue-50 via-purple-50 to-pink-50 dark:from-blue-900/20 dark:via-purple-900/20 dark:to-pink-900/20 rounded-xl border border-blue-200 dark:border-blue-800">
         <div className="text-center">
-          <div className="text-2xl font-bold text-blue-600 dark:text-blue-400">
+          <div className="text-3xl font-bold text-blue-600 dark:text-blue-400 mb-1">
             {demoSteps.length}
           </div>
           <div className="text-sm text-gray-600 dark:text-gray-400">Steps</div>
         </div>
         <div className="text-center">
-          <div className="text-2xl font-bold text-purple-600 dark:text-purple-400">
+          <div className="text-3xl font-bold text-purple-600 dark:text-purple-400 mb-1">
             {Math.round(demoSteps.reduce((acc, step) => acc + step.duration, 0) / 1000)}s
           </div>
           <div className="text-sm text-gray-600 dark:text-gray-400">Duration</div>
         </div>
         <div className="text-center">
-          <div className="text-2xl font-bold text-green-600 dark:text-green-400">
+          <div className="text-3xl font-bold text-green-600 dark:text-green-400 mb-1">
             {currentStep + 1}/{demoSteps.length}
           </div>
           <div className="text-sm text-gray-600 dark:text-gray-400">Progress</div>

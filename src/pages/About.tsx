@@ -275,7 +275,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Users, Target, Award, Heart, Globe, TrendingUp, Star, Zap } from 'lucide-react';
+import { Users, Target, Award, Heart, Globe, TrendingUp, Star, Zap, ArrowRight } from 'lucide-react';
 import { MetaTags } from '../components/SEO/MetaTags';
 import { LazyImage } from '../components/Performance/LazyImage';
 import { TeamBios } from '../components/Interactive/TeamBios';
@@ -541,7 +541,7 @@ export const About: React.FC = () => {
             </h2>
             <p className="text-xl text-gray-600 dark:text-gray-400 mb-8">
               Located in Greater Noida, serving premium clients globally with cutting-edge solutions
-            </p>
+                <div className="text-3xl font-bold text-purple-600 dark:text-purple-400">500+</div>
             <div className="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-8 text-lg mb-8">
               <div className="text-gray-600 dark:text-gray-400">
                 📍 Greater Noida, India

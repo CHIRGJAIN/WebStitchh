@@ -94,10 +94,10 @@ export const AIMetrics: React.FC = () => {
   }, []);
 
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg border border-gray-100 dark:border-gray-700">
+    <div className="bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm rounded-3xl p-8 shadow-2xl border border-gray-100 dark:border-gray-700 hover:shadow-3xl transition-all duration-300">
       <div className="flex items-center justify-between mb-8">
         <div>
-          <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
+          <h3 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">
             AI Performance Metrics
           </h3>
           <p className="text-gray-600 dark:text-gray-400">
@@ -110,7 +110,7 @@ export const AIMetrics: React.FC = () => {
           className={`px-4 py-2 rounded-lg font-semibold transition-all ${
             isAnimating 
               ? 'bg-gray-300 dark:bg-gray-600 cursor-not-allowed' 
-              : 'bg-gradient-to-r from-blue-600 to-purple-600 text-white hover:shadow-lg'
+              : 'bg-gradient-to-r from-blue-600 to-purple-600 text-white hover:shadow-lg hover:scale-105'
           }`}
           whileHover={!isAnimating ? { scale: 1.05 } : {}}
           whileTap={!isAnimating ? { scale: 0.95 } : {}}

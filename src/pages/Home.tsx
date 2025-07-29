@@ -218,11 +218,12 @@ export const Home: React.FC = () => {
             </p>
           </motion.div>
 
-          <div className="space-y-12">
+          <div className="space-y-16">
             <motion.div
               initial={{ opacity: 0, x: -30 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
+              className="bg-gradient-to-br from-blue-50 to-cyan-50 dark:from-blue-900/20 dark:to-cyan-900/20 rounded-3xl p-8 border border-blue-100 dark:border-blue-800"
             >
               <ServiceDemo service="ai" title="AI Solution Development" />
             </motion.div>
@@ -230,6 +231,7 @@ export const Home: React.FC = () => {
               initial={{ opacity: 0, x: 30 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
+              className="bg-gradient-to-br from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/20 rounded-3xl p-8 border border-purple-100 dark:border-purple-800"
             >
               <ServiceDemo service="web" title="Web Development Process" />
             </motion.div>
@@ -237,6 +239,7 @@ export const Home: React.FC = () => {
               initial={{ opacity: 0, x: -30 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 0.6 }}
+              className="bg-gradient-to-br from-green-50 to-blue-50 dark:from-green-900/20 dark:to-blue-900/20 rounded-3xl p-8 border border-green-100 dark:border-green-800"
             >
               <ServiceDemo service="mobile" title="Mobile App Development" />
             </motion.div>

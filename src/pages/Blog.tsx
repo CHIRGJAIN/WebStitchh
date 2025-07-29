@@ -6,7 +6,7 @@ import { blogPosts } from '../data/blog';
 import { MetaTags } from '../components/SEO/MetaTags';
 import { LazyImage } from '../components/Performance/LazyImage';
 
-const categories = ['All', 'Web Development', 'SEO', 'DevOps', 'UI/UX Design', 'Mobile Development'];
+const categories = ['All', 'Web Development', 'SEO', 'DevOps', 'UI/UX Design', 'Mobile Development', 'AI & Automation', 'Blockchain', 'Cybersecurity', 'Cloud Computing'];
 
 export const Blog: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState('All');
