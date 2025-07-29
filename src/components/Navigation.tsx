@@ -160,7 +160,7 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, Search, ChevronDown } from 'lucide-react';
+import { Menu, X, Search} from 'lucide-react';
 import { ThemeToggle } from './ThemeToggle';
 
 const navItems = [
@@ -188,7 +188,7 @@ const navItems = [
 
 export const Navigation: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [activeSubmenu, setActiveSubmenu] = useState<string | null>(null);
+  // const [setActiveSubmenu] = useState<string | null>(null);
   const location = useLocation();
 
   return (
@@ -211,7 +211,7 @@ export const Navigation: React.FC = () => {
                 key={item.path}
                 className="relative"
                 // onMouseEnter={() => item.submenu && setActiveSubmenu(item.label)}
-                onMouseLeave={() => setActiveSubmenu(null)}
+                // onMouseLeave={() => setActiveSubmenu(null)}
               >
                 <Link
                   to={item.path}

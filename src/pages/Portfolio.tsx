@@ -14,21 +14,22 @@ const projects = [
     description: 'Sustainable e-commerce platform with advanced inventory management and green shipping options',
     image: 'https://images.pexels.com/photos/3584994/pexels-photo-3584994.jpeg?auto=compress&cs=tinysrgb&w=800',
     technologies: ['React', 'Node.js', 'MongoDB', 'Stripe'],
-    liveUrl: '#',
+    liveUrl: 'https://ecomsite-luxe.netlify.app/',
     githubUrl: '#',
     featured: true
   },
-  {
-    id: 2,
-    title: 'HealthTech Mobile App',
-    category: 'Mobile Apps',
-    description: 'Comprehensive health monitoring app with AI-powered insights and telemedicine features',
-    image: 'https://images.pexels.com/photos/4033148/pexels-photo-4033148.jpeg?auto=compress&cs=tinysrgb&w=800',
-    technologies: ['React Native', 'Python', 'TensorFlow', 'AWS'],
-    liveUrl: '#',
-    githubUrl: '#',
-    featured: true
-  },
+{
+  id: 2,
+  title: 'Tyre Website',
+  category: 'Web Development',
+  description: 'A modern, responsive tyre service website featuring product listings, service booking, and location-based support for customers.',
+  image: 'https://images.pexels.com/photos/4033148/pexels-photo-4033148.jpeg?auto=compress&cs=tinysrgb&w=800',
+  technologies: ['React Native', 'Python', 'TensorFlow', 'AWS'],
+  liveUrl: 'https://bucolic-palmier-42a75e.netlify.app/', // 👈 Replace this with your actual hosted site URL
+  githubUrl: '#',
+  featured: true
+},
+
   {
     id: 3,
     title: 'FinanceFlow Dashboard',
@@ -36,7 +37,7 @@ const projects = [
     description: 'Real-time financial analytics dashboard with advanced data visualization and reporting',
     image: 'https://images.pexels.com/photos/590020/pexels-photo-590020.jpeg?auto=compress&cs=tinysrgb&w=800',
     technologies: ['Vue.js', 'D3.js', 'Express', 'PostgreSQL'],
-    liveUrl: '#',
+    liveUrl: 'https://financial-dash-roan.vercel.app/',
     githubUrl: '#',
     featured: false
   },
@@ -47,7 +48,7 @@ const projects = [
     description: 'Interactive online learning platform with video streaming and progress tracking',
     image: 'https://images.pexels.com/photos/5212345/pexels-photo-5212345.jpeg?auto=compress&cs=tinysrgb&w=800',
     technologies: ['Next.js', 'Prisma', 'PostgreSQL', 'WebRTC'],
-    liveUrl: '#',
+    liveUrl: 'https://edurika-web-portal.vercel.app/',
     githubUrl: '#',
     featured: true
   },
@@ -64,12 +65,12 @@ const projects = [
   },
   {
     id: 6,
-    title: 'Creative Agency Redesign',
+    title: 'Software Development',
     category: 'UI/UX Design',
     description: 'Complete brand redesign and website overhaul for a leading creative agency',
     image: 'https://images.pexels.com/photos/196644/pexels-photo-196644.jpeg?auto=compress&cs=tinysrgb&w=800',
     technologies: ['Figma', 'Adobe Creative Suite', 'Prototyping'],
-    liveUrl: '#',
+    liveUrl: 'https://www.figma.com/design/St1EnyoT4idZTyohd5uxMl/Inventory-Management-system--Community-?node-id=0-1&t=Lar78YyLEB9fphn5-1',
     githubUrl: '#',
     featured: false
   }
