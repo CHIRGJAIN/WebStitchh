@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import emailjs from '@emailjs/browser';
 import { motion } from 'framer-motion';
 import { MapPin, Phone, Mail, MessageCircle, Send, Clock, CheckCircle } from 'lucide-react';
 import { MetaTags } from '../components/SEO/MetaTags';
@@ -45,11 +46,30 @@ export const Contact: React.FC = () => {
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
 
+  const SERVICE_ID = 'service_ejmgi0o';
+  const TEMPLATE_ID = 'template_lr1ufw5';
+  const PUBLIC_KEY = 'RAOER-HfNH1vVgZUN';
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Simulate form submission
     setIsSubmitted(true);
-    setTimeout(() => setIsSubmitted(false), 3000);
+
+    emailjs.send(SERVICE_ID, TEMPLATE_ID, formData, PUBLIC_KEY)
+      .then(() => {
+        setTimeout(() => setIsSubmitted(false), 3000);
+        setFormData({
+          name: '',
+          email: '',
+          company: '',
+          project: '',
+          budget: '',
+          message: ''
+        });
+      })
+      .catch((error) => {
+        console.error('Email sending error:', error);
+        setIsSubmitted(false);
+      });
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
