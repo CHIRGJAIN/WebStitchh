@@ -165,21 +165,8 @@ import { ThemeToggle } from './ThemeToggle';
 
 const navItems = [
   { path: '/', label: 'Home' },
-  { path: '/about', label: 'About',
-    // submenu: [
-    //   { path: '/about', label: 'Our Story' },
-    //   { path: '/about/team', label: 'Team' },
-    //   { path: '/about/culture', label: 'Culture' }
-    // ]
-  },
-  { path: '/services', label: 'Services',
-    // submenu: [
-    //   { path: '/services/web-development', label: 'Web Development' },
-    //   { path: '/services/app-development', label: 'App Development' },
-    //   { path: '/services/ui-ux-design', label: 'UI/UX Design' },
-    //   { path: '/services/consulting', label: 'Tech Consulting' }
-    // ]
-  },
+  { path: '/about', label: 'About'},
+  { path: '/services', label: 'Services'},
   { path: '/portfolio', label: 'Portfolio' },
   { path: '/blog', label: 'Blog' },
   { path: '/careers', label: 'Careers' },
@@ -188,7 +175,6 @@ const navItems = [
 
 export const Navigation: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
-  // const [setActiveSubmenu] = useState<string | null>(null);
   const location = useLocation();
 
   return (
@@ -200,7 +186,8 @@ export const Navigation: React.FC = () => {
             <img 
               src="/webstitch-logo.png" 
               alt="WebStitch Logo" 
-              className="h-20 w-40 rounded-lg"
+              className="h-12 w-auto sm:h-16"
+              style={{ maxWidth: "150px" }} 
             />
           </Link>
 
@@ -210,8 +197,6 @@ export const Navigation: React.FC = () => {
               <div
                 key={item.path}
                 className="relative"
-                // onMouseEnter={() => item.submenu && setActiveSubmenu(item.label)}
-                // onMouseLeave={() => setActiveSubmenu(null)}
               >
                 <Link
                   to={item.path}
@@ -222,19 +207,13 @@ export const Navigation: React.FC = () => {
                   }`}
                 >
                   <span>{item.label}</span>
-                  {/* {item.submenu && (
-                    <ChevronDown className="w-4 h-4" />
-                  )} */}
                 </Link>
-
-                {/* Submenu */}
-                {/* Submenu placeholder - no submenu rendered */}
               </div>
             ))}
           </div>
 
           {/* Right Side Actions */}
-          <div className="flex items-center space-x-4">
+          <div className="flex items-center gap-2 sm:gap-4">
             <button className="p-2 text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400">
               <Search className="w-5 h-5" />
             </button>
