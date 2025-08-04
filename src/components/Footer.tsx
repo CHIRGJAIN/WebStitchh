@@ -68,67 +68,67 @@ export const Footer: React.FC = () => {
     <footer className="bg-gray-900 text-white">
       {/* Main Footer Content */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="grid lg:grid-cols-5 gap-8">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-6 sm:gap-8">
           {/* Company Info */}
-          <div className="lg:col-span-2">
+          <div className="sm:col-span-2 lg:col-span-2">
             <Link to="/" className="flex items-center space-x-2 mb-6">
               <motion.div
-                className="w-10 h-10 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg"
+                className="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg"
                 whileHover={{ rotate: 180 }}
                 transition={{ duration: 0.3 }}
               >
                 <div className="w-full h-full flex items-center justify-center">
-                  <Code className="w-6 h-6 text-white" />
+                  <Code className="w-4 h-4 sm:w-6 sm:h-6 text-white" />
                 </div>
               </motion.div>
              <Link to="/" className="flex items-center space-x-2">
                          <img 
                            src="/webstitch-logo.png" 
                            alt="WebStitch Logo" 
-                           className="h-30 w-40 rounded-lg"
+                           className="h-6 w-auto sm:h-8 md:h-10 rounded-lg"
                          />
                        </Link>
              
             </Link>
             
-            <p className="text-gray-400 mb-6 leading-relaxed">
+            <p className="text-sm sm:text-base text-gray-400 mb-4 sm:mb-6 leading-relaxed">
               Empowering businesses with innovative, scalable, and secure digital solutions. 
               We transform ideas into powerful digital experiences that drive growth and success.
             </p>
 
             {/* Contact Info */}
-            <div className="space-y-3 mb-6">
+            <div className="space-y-2 sm:space-y-3 mb-4 sm:mb-6">
               <div className="flex items-center text-gray-400">
-                <MapPin className="w-5 h-5 mr-3 text-blue-400" />
-                <span>Greater Noida, Uttar Pradesh, India</span>
+                <MapPin className="w-4 h-4 sm:w-5 sm:h-5 mr-2 sm:mr-3 text-blue-400" />
+                <span className="text-sm sm:text-base">Greater Noida, Uttar Pradesh, India</span>
               </div>
               <div className="flex items-center text-gray-400">
-                <Phone className="w-5 h-5 mr-3 text-blue-400" />
+                <Phone className="w-4 h-4 sm:w-5 sm:h-5 mr-2 sm:mr-3 text-blue-400" />
                 <a href="tel:9899721172" className="hover:text-white transition-colors">
-                  9899721172
+                  <span className="text-sm sm:text-base">9899721172</span>
                 </a>
               </div>
               <div className="flex items-center text-gray-400">
-                <Mail className="w-5 h-5 mr-3 text-blue-400" />
+                <Mail className="w-4 h-4 sm:w-5 sm:h-5 mr-2 sm:mr-3 text-blue-400" />
                 <a href="mailto:webstitchh@gmail.com" className="hover:text-white transition-colors">
-                  webstitchh@gmail.com
+                  <span className="text-sm sm:text-base">webstitchh@gmail.com</span>
                 </a>
               </div>
             </div>
 
             {/* Social Links */}
-            <div className="flex space-x-4">
+            <div className="flex space-x-3 sm:space-x-4">
               {socialLinks.map((social) => (
                 <motion.a
                   key={social.name}
                   href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center text-gray-400 hover:text-white hover:bg-blue-600 transition-all"
+                  className="w-8 h-8 sm:w-10 sm:h-10 bg-gray-800 rounded-lg flex items-center justify-center text-gray-400 hover:text-white hover:bg-blue-600 transition-all"
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.9 }}
                 >
-                  <social.icon className="w-5 h-5" />
+                  <social.icon className="w-4 h-4 sm:w-5 sm:h-5" />
                 </motion.a>
               ))}
             </div>
@@ -136,16 +136,16 @@ export const Footer: React.FC = () => {
 
           {/* Services */}
           <div>
-            <h3 className="text-lg font-semibold mb-6">Services</h3>
-            <ul className="space-y-3">
+            <h3 className="text-base sm:text-lg font-semibold mb-4 sm:mb-6">Services</h3>
+            <ul className="space-y-2 sm:space-y-3">
               {footerLinks.services.map((link) => (
                 <li key={link.name}>
                   <Link
                     to={link.href}
-                    className="text-gray-400 hover:text-white transition-colors flex items-center group"
+                    className="text-sm sm:text-base text-gray-400 hover:text-white transition-colors flex items-center group"
                   >
                     <span>{link.name}</span>
-                    <ArrowRight className="w-4 h-4 ml-1 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
+                    <ArrowRight className="w-3 h-3 sm:w-4 sm:h-4 ml-1 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
                   </Link>
                 </li>
               ))}
@@ -154,16 +154,16 @@ export const Footer: React.FC = () => {
 
           {/* Company */}
           <div>
-            <h3 className="text-lg font-semibold mb-6">Company</h3>
-            <ul className="space-y-3">
+            <h3 className="text-base sm:text-lg font-semibold mb-4 sm:mb-6">Company</h3>
+            <ul className="space-y-2 sm:space-y-3">
               {footerLinks.company.map((link) => (
                 <li key={link.name}>
                   <Link
                     to={link.href}
-                    className="text-gray-400 hover:text-white transition-colors flex items-center group"
+                    className="text-sm sm:text-base text-gray-400 hover:text-white transition-colors flex items-center group"
                   >
                     <span>{link.name}</span>
-                    <ArrowRight className="w-4 h-4 ml-1 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
+                    <ArrowRight className="w-3 h-3 sm:w-4 sm:h-4 ml-1 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
                   </Link>
                 </li>
               ))}
@@ -172,16 +172,16 @@ export const Footer: React.FC = () => {
 
           {/* Resources */}
           <div>
-            <h3 className="text-lg font-semibold mb-6">Resources</h3>
-            <ul className="space-y-3">
+            <h3 className="text-base sm:text-lg font-semibold mb-4 sm:mb-6">Resources</h3>
+            <ul className="space-y-2 sm:space-y-3">
               {footerLinks.resources.map((link) => (
                 <li key={link.name}>
                   <Link
                     to={link.href}
-                    className="text-gray-400 hover:text-white transition-colors flex items-center group"
+                    className="text-sm sm:text-base text-gray-400 hover:text-white transition-colors flex items-center group"
                   >
                     <span>{link.name}</span>
-                    <ArrowRight className="w-4 h-4 ml-1 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
+                    <ArrowRight className="w-3 h-3 sm:w-4 sm:h-4 ml-1 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
                   </Link>
                 </li>
               ))}
@@ -192,18 +192,18 @@ export const Footer: React.FC = () => {
         {/* Newsletter Signup */}
         <div className="border-t border-gray-800 mt-12 pt-12">
           <div className="max-w-md mx-auto text-center">
-            <h3 className="text-xl font-semibold mb-4">Stay Updated</h3>
-            <p className="text-gray-400 mb-6">
+            <h3 className="text-lg sm:text-xl font-semibold mb-3 sm:mb-4">Stay Updated</h3>
+            <p className="text-sm sm:text-base text-gray-400 mb-4 sm:mb-6">
               Subscribe to our newsletter for the latest tech insights and project updates.
             </p>
-            <form onSubmit={handleNewsletterSubmit} className="flex gap-3">
+            <form onSubmit={handleNewsletterSubmit} className="flex flex-col sm:flex-row gap-2 sm:gap-3">
               <input
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="Enter your email"
                 required
-                className="flex-1 px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-white placeholder-gray-400"
+                className="flex-1 px-3 sm:px-4 py-2 sm:py-3 bg-gray-800 border border-gray-700 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-white placeholder-gray-400 text-sm sm:text-base"
               />
               <motion.button
                 type="submit"
@@ -212,7 +212,7 @@ export const Footer: React.FC = () => {
                   isSubscribed
                     ? 'bg-green-600 text-white'
                     : 'bg-gradient-to-r from-blue-600 to-purple-600 text-white hover:shadow-lg'
-                }`}
+                } text-sm sm:text-base`}
                 whileHover={!isSubscribed ? { scale: 1.05 } : {}}
                 whileTap={!isSubscribed ? { scale: 0.95 } : {}}
               >
@@ -226,11 +226,11 @@ export const Footer: React.FC = () => {
       {/* Bottom Bar */}
       <div className="border-t border-gray-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-          <div className="flex flex-col md:flex-row justify-between items-center">
-            <div className="text-gray-400 text-sm mb-4 md:mb-0">
+          <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
+            <div className="text-gray-400 text-xs sm:text-sm text-center sm:text-left">
               © {new Date().getFullYear()} WebStitch. All rights reserved. Made with ❤️ in Greater Noida.
             </div>
-            <div className="flex flex-wrap gap-6 text-sm">
+            <div className="flex flex-wrap gap-3 sm:gap-6 text-xs sm:text-sm justify-center">
               {footerLinks.legal.map((link) => (
                 <Link
                   key={link.name}

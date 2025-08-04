@@ -72,22 +72,22 @@ export const Home: React.FC = () => {
       />
 
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-blue-900/5 via-purple-900/5 to-cyan-900/5">
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-blue-900/5 via-purple-900/5 to-cyan-900/5 px-4">
         <HeroAnimation />
         <FloatingElements />
         
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <div className="relative z-10 max-w-7xl mx-auto text-center w-full">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <h1 className="text-5xl md:text-7xl font-bold mb-6">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-4 sm:mb-6 leading-tight">
               <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-blue-800 bg-clip-text text-transparent">
                 Transform. Innovate. Dominate.
               </span>
             </h1>
-            <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 mb-8 max-w-5xl mx-auto leading-relaxed">
+            <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-600 dark:text-gray-300 mb-6 sm:mb-8 max-w-5xl mx-auto leading-relaxed px-4">
               We craft premium digital experiences that captivate users and drive exponential business growth. 
               From AI-powered solutions to stunning mobile apps - we turn your vision into market-leading reality.
             </p>
@@ -97,7 +97,7 @@ export const Home: React.FC = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.3 }}
-              className="flex flex-wrap justify-center gap-4 mb-8"
+              className="flex flex-wrap justify-center gap-2 sm:gap-4 mb-6 sm:mb-8 px-4"
             >
               {[
                 { icon: Brain, text: 'AI Solutions', color: 'from-blue-500 to-cyan-500' },
@@ -110,29 +110,29 @@ export const Home: React.FC = () => {
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.5, delay: 0.4 + index * 0.1 }}
-                  className={`flex items-center space-x-2 bg-gradient-to-r ${feature.color} bg-opacity-10 backdrop-blur-sm px-4 py-2 rounded-full border border-white/20 dark:border-gray-700 hover:scale-105 transition-transform cursor-pointer`}
+                  className={`flex items-center space-x-1 sm:space-x-2 bg-gradient-to-r ${feature.color} bg-opacity-10 backdrop-blur-sm px-2 sm:px-4 py-1 sm:py-2 rounded-full border border-white/20 dark:border-gray-700 hover:scale-105 transition-transform cursor-pointer`}
                   whileHover={{ scale: 1.05 }}
                 >
-                  <feature.icon className="w-4 h-4 text-white" />
-                  <span className="text-sm font-medium text-white">
+                  <feature.icon className="w-3 h-3 sm:w-4 sm:h-4 text-white" />
+                  <span className="text-xs sm:text-sm font-medium text-white">
                     {feature.text}
                   </span>
                 </motion.div>
               ))}
             </motion.div>
             
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center px-4">
               <motion.div
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
                 <Link
                   to="/portfolio"
-                  className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl font-semibold hover:shadow-2xl hover:shadow-blue-500/25 transition-all group transform hover:scale-105"
+                  className="inline-flex items-center px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl font-semibold hover:shadow-2xl hover:shadow-blue-500/25 transition-all group transform hover:scale-105 text-sm sm:text-base"
                 >
-                  <Play className="mr-2 w-5 h-5" />
+                  <Play className="mr-1 sm:mr-2 w-4 h-4 sm:w-5 sm:h-5" />
                   Experience Our Work
-                  <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                  <ArrowRight className="ml-1 sm:ml-2 w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform" />
                 </Link>
               </motion.div>
               <motion.div
@@ -141,11 +141,11 @@ export const Home: React.FC = () => {
               >
                 <Link
                   to="/contact"
-                  className="inline-flex items-center px-8 py-4 border-2 border-white/30 text-white backdrop-blur-sm rounded-xl font-semibold hover:bg-white/10 transition-all group transform hover:scale-105"
+                  className="inline-flex items-center px-6 sm:px-8 py-3 sm:py-4 border-2 border-white/30 text-white backdrop-blur-sm rounded-xl font-semibold hover:bg-white/10 transition-all group transform hover:scale-105 text-sm sm:text-base"
                 >
-                  <Sparkles className="mr-2 w-5 h-5" />
+                  <Sparkles className="mr-1 sm:mr-2 w-4 h-4 sm:w-5 sm:h-5" />
                   Start Your Project
-                  <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                  <ArrowRight className="ml-1 sm:ml-2 w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform" />
                 </Link>
               </motion.div>
             </div>
@@ -162,15 +162,15 @@ export const Home: React.FC = () => {
             transition={{ duration: 0.8 }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-gray-900 to-gray-600 dark:from-white dark:to-gray-300 bg-clip-text text-transparent">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6 bg-gradient-to-r from-gray-900 to-gray-600 dark:from-white dark:to-gray-300 bg-clip-text text-transparent px-4">
               Proven Excellence
             </h2>
-            <p className="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
+            <p className="text-base sm:text-lg md:text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto px-4">
               Numbers that speak to our commitment to delivering exceptional results
             </p>
           </motion.div>
           
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 md:gap-8">
             {stats.map((stat, index) => (
               <motion.div
                 key={stat.label}
@@ -180,19 +180,19 @@ export const Home: React.FC = () => {
                 className="text-center group"
               >
                 <motion.div 
-                  className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl mb-4 group-hover:scale-110 transition-transform shadow-lg"
+                  className="inline-flex items-center justify-center w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl sm:rounded-2xl mb-3 sm:mb-4 group-hover:scale-110 transition-transform shadow-lg"
                   whileHover={{ rotate: 5 }}
                 >
-                  <stat.icon className="w-8 h-8 text-white" />
+                  <stat.icon className="w-5 h-5 sm:w-6 sm:h-6 md:w-8 md:h-8 text-white" />
                 </motion.div>
                 <motion.div 
-                  className="text-4xl font-bold text-gray-900 dark:text-white mb-2"
+                  className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-1 sm:mb-2"
                   animate={{ scale: [1, 1.05, 1] }}
                   transition={{ duration: 2, repeat: Infinity, delay: index * 0.2 }}
                 >
                   {stat.value}
                 </motion.div>
-                <div className="text-gray-600 dark:text-gray-400">
+                <div className="text-xs sm:text-sm md:text-base text-gray-600 dark:text-gray-400">
                   {stat.label}
                 </div>
               </motion.div>
@@ -210,20 +210,20 @@ export const Home: React.FC = () => {
             transition={{ duration: 0.8 }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-gray-900 to-gray-600 dark:from-white dark:to-gray-300 bg-clip-text text-transparent">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6 bg-gradient-to-r from-gray-900 to-gray-600 dark:from-white dark:to-gray-300 bg-clip-text text-transparent px-4">
               Interactive Service Demos
             </h2>
-            <p className="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
+            <p className="text-base sm:text-lg md:text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto px-4">
               Experience our development process through interactive demonstrations
             </p>
           </motion.div>
 
-          <div className="space-y-16">
+          <div className="space-y-8 sm:space-y-12 md:space-y-16">
             <motion.div
               initial={{ opacity: 0, x: -30 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="bg-gradient-to-br from-blue-50 to-cyan-50 dark:from-blue-900/20 dark:to-cyan-900/20 rounded-3xl p-8 border border-blue-100 dark:border-blue-800"
+              className="bg-gradient-to-br from-blue-50 to-cyan-50 dark:from-blue-900/20 dark:to-cyan-900/20 rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-8 border border-blue-100 dark:border-blue-800"
             >
               <ServiceDemo service="ai" title="AI Solution Development" />
             </motion.div>
@@ -231,7 +231,7 @@ export const Home: React.FC = () => {
               initial={{ opacity: 0, x: 30 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
-              className="bg-gradient-to-br from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/20 rounded-3xl p-8 border border-purple-100 dark:border-purple-800"
+              className="bg-gradient-to-br from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/20 rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-8 border border-purple-100 dark:border-purple-800"
             >
               <ServiceDemo service="web" title="Web Development Process" />
             </motion.div>
@@ -239,7 +239,7 @@ export const Home: React.FC = () => {
               initial={{ opacity: 0, x: -30 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 0.6 }}
-              className="bg-gradient-to-br from-green-50 to-blue-50 dark:from-green-900/20 dark:to-blue-900/20 rounded-3xl p-8 border border-green-100 dark:border-green-800"
+              className="bg-gradient-to-br from-green-50 to-blue-50 dark:from-green-900/20 dark:to-blue-900/20 rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-8 border border-green-100 dark:border-green-800"
             >
               <ServiceDemo service="mobile" title="Mobile App Development" />
             </motion.div>
@@ -256,10 +256,10 @@ export const Home: React.FC = () => {
             transition={{ duration: 0.8 }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-gray-900 to-gray-600 dark:from-white dark:to-gray-300 bg-clip-text text-transparent">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6 bg-gradient-to-r from-gray-900 to-gray-600 dark:from-white dark:to-gray-300 bg-clip-text text-transparent px-4">
               Portfolio Showcase
             </h2>
-            <p className="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
+            <p className="text-base sm:text-lg md:text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto px-4">
               Explore our most successful projects and see the impact we've made across industries
             </p>
           </motion.div>
@@ -277,15 +277,15 @@ export const Home: React.FC = () => {
             transition={{ duration: 0.8 }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-gray-900 to-gray-600 dark:from-white dark:to-gray-300 bg-clip-text text-transparent">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6 bg-gradient-to-r from-gray-900 to-gray-600 dark:from-white dark:to-gray-300 bg-clip-text text-transparent px-4">
               Premium Digital Solutions
             </h2>
-            <p className="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
+            <p className="text-base sm:text-lg md:text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto px-4">
               Comprehensive digital solutions that transform how businesses operate and grow
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
             {services.map((service, index) => (
               <motion.div
                 key={service.title}
@@ -295,25 +295,25 @@ export const Home: React.FC = () => {
                 whileHover={{ y: -10 }}
                 className="group"
               >
-                <div className="relative p-8 bg-white dark:bg-gray-800 rounded-2xl shadow-lg hover:shadow-2xl hover:shadow-blue-500/10 transition-all duration-300 border border-gray-100 dark:border-gray-700 overflow-hidden">
+                <div className="relative p-4 sm:p-6 md:p-8 bg-white dark:bg-gray-800 rounded-xl sm:rounded-2xl shadow-lg hover:shadow-2xl hover:shadow-blue-500/10 transition-all duration-300 border border-gray-100 dark:border-gray-700 overflow-hidden h-full">
                   {/* Animated Background */}
                   <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-purple-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                   
-                  <div className={`inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br ${service.color} rounded-xl mb-6 group-hover:scale-110 transition-transform`}>
-                    <service.icon className="w-8 h-8 text-white" />
+                  <div className={`inline-flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 bg-gradient-to-br ${service.color} rounded-lg sm:rounded-xl mb-4 sm:mb-6 group-hover:scale-110 transition-transform`}>
+                    <service.icon className="w-5 h-5 sm:w-6 sm:h-6 md:w-8 md:h-8 text-white" />
                   </div>
-                  <h3 className="text-xl font-semibold mb-4 text-gray-900 dark:text-white">
+                  <h3 className="text-lg sm:text-xl font-semibold mb-3 sm:mb-4 text-gray-900 dark:text-white">
                     {service.title}
                   </h3>
-                  <p className="text-gray-600 dark:text-gray-400 mb-6">
+                  <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 mb-4 sm:mb-6 line-clamp-3">
                     {service.description}
                   </p>
                   <Link
                     to="/services"
-                    className="inline-flex items-center text-blue-600 dark:text-blue-400 font-semibold hover:text-blue-700 dark:hover:text-blue-300 transition-colors relative z-10"
+                    className="inline-flex items-center text-sm sm:text-base text-blue-600 dark:text-blue-400 font-semibold hover:text-blue-700 dark:hover:text-blue-300 transition-colors relative z-10"
                   >
                     Learn More
-                    <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                    <ArrowRight className="ml-1 sm:ml-2 w-3 h-3 sm:w-4 sm:h-4 group-hover:translate-x-1 transition-transform" />
                   </Link>
                 </div>
               </motion.div>
@@ -331,47 +331,47 @@ export const Home: React.FC = () => {
             transition={{ duration: 0.8 }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-gray-900 to-gray-600 dark:from-white dark:to-gray-300 bg-clip-text text-transparent">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6 bg-gradient-to-r from-gray-900 to-gray-600 dark:from-white dark:to-gray-300 bg-clip-text text-transparent px-4">
               Client Success Stories
             </h2>
-            <p className="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
+            <p className="text-base sm:text-lg md:text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto px-4">
               See how our solutions have transformed businesses and delivered exceptional results
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
             {featuredTestimonials.map((testimonial, index) => (
               <motion.div
                 key={testimonial.id}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-lg border border-gray-100 dark:border-gray-700 hover:shadow-xl hover:shadow-blue-500/10 transition-all duration-300 group"
+                className="bg-white dark:bg-gray-800 p-4 sm:p-6 rounded-xl sm:rounded-2xl shadow-lg border border-gray-100 dark:border-gray-700 hover:shadow-xl hover:shadow-blue-500/10 transition-all duration-300 group h-full"
               >
-                <div className="flex items-center justify-between mb-4">
+                <div className="flex items-center justify-between mb-3 sm:mb-4">
                   <div className="flex items-center">
                   {[...Array(testimonial.rating)].map((_, i) => (
-                      <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />
+                    <Star key={i} className="w-4 h-4 sm:w-5 sm:h-5 text-yellow-400 fill-current" />
                   ))}
                   </div>
-                  <div className="text-4xl text-blue-200 dark:text-blue-800 opacity-50 group-hover:opacity-100 transition-opacity">
+                  <div className="text-2xl sm:text-3xl md:text-4xl text-blue-200 dark:text-blue-800 opacity-50 group-hover:opacity-100 transition-opacity">
                     "
                   </div>
                 </div>
-                <p className="text-gray-600 dark:text-gray-400 mb-6 italic leading-relaxed">
+                <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 mb-4 sm:mb-6 italic leading-relaxed line-clamp-4">
                   {testimonial.content}
                 </p>
                 <div className="flex items-center">
                   <LazyImage
                     src={testimonial.avatar}
                     alt={testimonial.name}
-                    className="w-12 h-12 rounded-full mr-4"
+                    className="w-10 h-10 sm:w-12 sm:h-12 rounded-full mr-3 sm:mr-4"
                   />
                   <div>
-                    <div className="font-semibold text-gray-900 dark:text-white">
+                    <div className="text-sm sm:text-base font-semibold text-gray-900 dark:text-white">
                       {testimonial.name}
                     </div>
-                    <div className="text-sm text-gray-600 dark:text-gray-400">
+                    <div className="text-xs sm:text-sm text-gray-600 dark:text-gray-400">
                       {testimonial.role}, {testimonial.company}
                     </div>
                   </div>
@@ -399,24 +399,24 @@ export const Home: React.FC = () => {
             transition={{ duration: 0.8 }}
             className="relative z-10"
           >
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 sm:mb-6 px-4">
               Ready to Transform Your Business?
             </h2>
-            <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
+            <p className="text-base sm:text-lg md:text-xl text-blue-100 mb-6 sm:mb-8 max-w-2xl mx-auto px-4">
               Join the digital transformation. Let's discuss how our premium solutions can revolutionize your business operations and drive unprecedented growth.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center px-4">
               <motion.div
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
                 <Link
                   to="/contact"
-                  className="inline-flex items-center px-8 py-4 bg-white text-blue-600 rounded-xl font-semibold hover:bg-gray-50 transition-all shadow-2xl group"
+                  className="inline-flex items-center px-6 sm:px-8 py-3 sm:py-4 bg-white text-blue-600 rounded-xl font-semibold hover:bg-gray-50 transition-all shadow-2xl group text-sm sm:text-base"
                 >
-                  <Sparkles className="mr-2 w-5 h-5" />
+                  <Sparkles className="mr-1 sm:mr-2 w-4 h-4 sm:w-5 sm:h-5" />
                   Start Your Project
-                  <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                  <ArrowRight className="ml-1 sm:ml-2 w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform" />
                 </Link>
               </motion.div>
               <motion.div
@@ -425,11 +425,11 @@ export const Home: React.FC = () => {
               >
                 <Link
                   to="/portfolio"
-                  className="inline-flex items-center px-8 py-4 border-2 border-white/30 text-white backdrop-blur-sm rounded-xl font-semibold hover:bg-white/10 transition-all group"
+                  className="inline-flex items-center px-6 sm:px-8 py-3 sm:py-4 border-2 border-white/30 text-white backdrop-blur-sm rounded-xl font-semibold hover:bg-white/10 transition-all group text-sm sm:text-base"
                 >
-                  <Play className="mr-2 w-5 h-5" />
+                  <Play className="mr-1 sm:mr-2 w-4 h-4 sm:w-5 sm:h-5" />
                   View Our Work
-                  <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                  <ArrowRight className="ml-1 sm:ml-2 w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform" />
                 </Link>
               </motion.div>
             </div>

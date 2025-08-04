@@ -186,13 +186,13 @@ export const Navigation: React.FC = () => {
             <img 
               src="/webstitch-logo.png" 
               alt="WebStitch Logo" 
-              className="h-12 w-auto sm:h-16"
-              style={{ maxWidth: "150px" }} 
+              className="h-8 w-auto sm:h-12 md:h-16"
+              style={{ maxWidth: "120px" }} 
             />
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
+          <div className="hidden lg:flex items-center space-x-6 xl:space-x-8">
             {navItems.map((item) => (
               <div
                 key={item.path}
@@ -214,7 +214,7 @@ export const Navigation: React.FC = () => {
 
           {/* Right Side Actions */}
           <div className="flex items-center gap-2 sm:gap-4">
-            <button className="p-2 text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400">
+            <button className="hidden sm:block p-2 text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400">
               <Search className="w-5 h-5" />
             </button>
             <ThemeToggle />
@@ -222,7 +222,7 @@ export const Navigation: React.FC = () => {
             {/* Mobile Menu Button */}
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="md:hidden p-2 text-gray-600 dark:text-gray-300"
+              className="lg:hidden p-2 text-gray-600 dark:text-gray-300"
             >
               {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
@@ -237,7 +237,7 @@ export const Navigation: React.FC = () => {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-700"
+            className="lg:hidden bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-700"
           >
             <div className="px-4 py-2 space-y-1">
               {navItems.map((item) => (
