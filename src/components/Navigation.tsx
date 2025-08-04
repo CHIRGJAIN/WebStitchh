@@ -169,6 +169,7 @@ const navItems = [
   { path: '/services', label: 'Services'},
   { path: '/portfolio', label: 'Portfolio' },
   { path: '/blog', label: 'Blog' },
+  { path: '/responsive-demo', label: 'Demo' },
   { path: '/careers', label: 'Careers' },
   { path: '/contact', label: 'Contact' }
 ];

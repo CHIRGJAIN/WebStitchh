@@ -127,11 +127,11 @@ export const Home: React.FC = () => {
                 whileTap={{ scale: 0.95 }}
               >
                 <Link
-                  to="/portfolio"
+                  to="/responsive-demo"
                   className="inline-flex items-center px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl font-semibold hover:shadow-2xl hover:shadow-blue-500/25 transition-all group transform hover:scale-105 text-sm sm:text-base"
                 >
                   <Play className="mr-1 sm:mr-2 w-4 h-4 sm:w-5 sm:h-5" />
-                  Experience Our Work
+                  Experience Demo
                   <ArrowRight className="ml-1 sm:ml-2 w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform" />
                 </Link>
               </motion.div>
